@@ -1,30 +1,3 @@
-from random import randint
-
-
-class Building:
-	def __init__(self):
-		self.elevators = []
-		self.generate_elevators()
-		self.energy_consumption = 0
-
-
-	def generate_elevators(self):
-		for i in range(4):
-			col = []
-			for e in range(randint(3, 5)):
-				elev = Elevator(i, e)
-				# Set above attribute for previous elevator
-				# Set below attribute for current elevator 
-				if e > 0:
-					elev.below = col[e-1]
-					col[e-1].above = elev
-				col.append(elev)
-
-			self.elevators.append(col)
-
-
-
-
 class Elevator:
 	def __init__(self, col, floor):
 		self.col = col
@@ -105,9 +78,32 @@ class Elevator:
 				print('There is an elevator blocking the way')
 
 
+				
+				
+def generate_elevators(n=3):
+	elevators = []
+	for i in range(4):
+		col = []
+		for e in range(n):
+			elev = Elevator(i, e)
+			# Set above attribute for previous elevator
+			# Set below attribute for current elevator 
+			if e > 0:
+				elev.below = col[e-1]
+				col[e-1].above = elev
+			
+			col.append(elev)
+	
+		elevators.append(col)
 
-b = Building()
+	return elevators
 
-for c in b.elevators:
-	for e in c:
-		print(e)
+
+def show_elevators(elevators):
+	for col in elevators:
+		for e in col:
+			print(e)
+
+
+elevators = generate_elevators()
+show_elevators(elevators)
