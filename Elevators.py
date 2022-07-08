@@ -207,7 +207,7 @@ if __name__ == '__main__':
     elevator_matrix(elevators)
     while True:
         try:
-            from_ = int(input('[+] Eneter your current floor: '))
+            from_ = int(input('[+] Enter your current floor: '))
             to = int(input('[+] Enter the floor where you want to go to: '))
             call_elevator(from_, to, elevators)
         except ValueError:
